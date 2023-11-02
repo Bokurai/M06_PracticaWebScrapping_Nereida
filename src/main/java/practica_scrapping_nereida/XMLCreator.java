@@ -1,5 +1,5 @@
 package practica_scrapping_nereida;
-public class WebScrapper {
+public class XMLCreator {
 
     public void accederElementosLibro(){
 
