@@ -13,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //Establecemos los paths
         System.out.println(System.getenv("PATH"));
         System.out.println(System.getenv("HOME"));
 
@@ -23,23 +24,27 @@ public class Main {
 
         //navegamos hasta la página web en concreto
         driver.get("https://www.lecturalia.com/");
+
         //Establecemos un TimeWait implícito para que a la hora de encontrar los elementos se espere a que el driver proceda
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //para evitar clicar manualmente el Aceptar las cookies del navegador cada vez que iniciamos el programa
+
+        //Para evitar clicar manualmente el Aceptar las cookies del navegador cada vez que iniciamos el programa
         driver.findElement(By.id("didomi-notice-agree-button")).click();
         WebElement libros = driver.findElement(By.linkText("Libros"));
         libros.click();
-        //empezamos con la categoría literatura
+
+        //Empezamos con la categoría literatura
         WebElement literatura = driver.findElement(By.linkText("Literatura"));
         literatura.click();
         saltaranuncios();
+
         //vamos a la segunda página
         saltarpaginaencategoria();
 
 
-
         driver.close();
     }
+
     //método para poder saltar los anuncios cada vez que hagamos cambio de página
     public static void saltaranuncios() {
         WebElement anuncios = driver.findElement(By.id("ad_position_box"));
