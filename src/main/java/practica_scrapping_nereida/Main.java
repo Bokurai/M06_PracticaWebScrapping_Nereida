@@ -29,9 +29,16 @@ public class Main {
         driver.findElement(By.id("didomi-notice-agree-button")).click();
         WebElement libros = driver.findElement(By.linkText("Libros"));
         libros.click();
+        //empezamos con la categoría literatura
+        WebElement literatura = driver.findElement(By.linkText("Literatura"));
+        literatura.click();
         saltaranuncios();
+        //vamos a la segunda página
+        saltarpaginaencategoria();
 
 
+
+        driver.close();
     }
     //método para poder saltar los anuncios cada vez que hagamos cambio de página
     public static void saltaranuncios() {
@@ -39,9 +46,17 @@ public class Main {
         try {
             if (anuncios.isDisplayed()) {
                 driver.findElement(By.id("dismiss-button")).click();
+            }else {
+
             }
         } catch (Exception e) {
             e.getMessage();
         }
+    }
+
+    //método para poder ir a otras páginas en la misma categoría
+    public static void saltarpaginaencategoria(){
+        WebElement siguiente = driver.findElement(By.linkText("Siguiente"));
+        siguiente.click();
     }
 }
