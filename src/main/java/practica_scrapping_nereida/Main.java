@@ -33,15 +33,16 @@ public class Main {
         WebElement libros = driver.findElement(By.linkText("Libros"));
         libros.click();
 
-        //Empezamos con la categoría literatura
+        //1.Categoría: Literatura
         WebElement literatura = driver.findElement(By.linkText("Literatura"));
         literatura.click();
-        saltaranuncios();
 
         //vamos a la segunda página
         saltarpaginaencategoria();
 
 
+
+        //2.Categoría:
         driver.close();
     }
 
@@ -51,8 +52,6 @@ public class Main {
         try {
             if (anuncios.isDisplayed()) {
                 driver.findElement(By.id("dismiss-button")).click();
-            }else {
-
             }
         } catch (Exception e) {
             e.getMessage();
