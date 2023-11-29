@@ -1,6 +1,6 @@
 package practica_scrapping_nereida;
 
-//Importamos las clases necesarias
+//importamos las clases necesarias
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -38,6 +38,10 @@ public class Main {
         driver.findElement(By.id("didomi-notice-agree-button")).click();
         WebElement libros = driver.findElement(By.linkText("Libros"));
         libros.click();
+
+
+        //EXTRACCIÓN DE ENLACES Y DATOS
+
 
         //1.Categoría: Literatura
         WebElement literatura = driver.findElement(By.linkText("Literatura"));
@@ -92,9 +96,9 @@ public class Main {
         //tras invocar el método, por conveniencia convertiremos ensEnlaces a un array simple
         String[] ensayoEnlacesArray = ensEnlaces.toArray(new String[0]);
 
-        System.out.println("Enlaces ensayo como array:");
+        //ahora extraemos la información de los enlaces
         for (String enlace : ensayoEnlacesArray) {
-            System.out.println(enlace);
+            extraerInfo(enlace);
         }
     }
 
@@ -126,14 +130,22 @@ public class Main {
                 // buscamos el tag a utilizando wait
                 WebElement link = wait.until(ExpectedConditions.elementToBeClickable(elementosLi.findElement(By.tagName("a"))));
 
-                // Eetraemos el texto del atributo href
+                // extraemos el texto del atributo href
                 String urlLi = link.getAttribute("href");
 
-                // Finalmente, lo añadimos a la lista
+                // finalmente, lo añadimos a la lista
                 links.add(urlLi);
             } catch (NoSuchElementException e) {
                 System.out.println("No se ha encontrado el elemento u-u");
             }
         }
     }
+
+    //método para extraer la info
+    public static void extraerInfo(String enla) {
+        //primero navegamos a la página que contiene el enlace
+        driver.navigate().to(enla);
+    }
+
+    //método para categorizar y subcategorizar los libros
 }

@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a06c2b26-71b6-408b-986b-8fa6dfb7524f" name="Changes" comment="modificando algunas cosas">
+    <list default="true" id="a06c2b26-71b6-408b-986b-8fa6dfb7524f" name="Changes" comment="extraer links listo">
+      <change afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Categoria.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Libro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Tema.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Extractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/ConvertirCSV_XML.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +92,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699543893489</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="extraer links listo">
+      <option name="closed" value="true" />
+      <created>1701225660228</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701225660228</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -106,6 +118,7 @@
     <MESSAGE value="ftry" />
     <MESSAGE value="primeros cambios para acceder a la sección de libros" />
     <MESSAGE value="modificando algunas cosas" />
-    <option name="LAST_COMMIT_MESSAGE" value="modificando algunas cosas" />
+    <MESSAGE value="extraer links listo" />
+    <option name="LAST_COMMIT_MESSAGE" value="extraer links listo" />
   </component>
 </project>
