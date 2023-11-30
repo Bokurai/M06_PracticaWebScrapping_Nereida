@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class Main {
     private static WebDriver driver;
@@ -158,27 +159,29 @@ public class Main {
 
             WebElement tituloElem = driver.findElement(By.cssSelector("h1.title"));
             String titulo = tituloElem.getText().trim();
-            info.put("Título", titulo);
+            info.put("titulo", titulo);
 
             WebElement autorElem = driver.findElement(By.cssSelector("div.web-middle__highlight.profile__header p strong:contains('Año publicación:') + a"));
             String autor = autorElem.getText().trim();
-            info.put("Autor", autor);
+            info.put("autor", autor);
 
             WebElement editElem = driver.findElement(By.xpath("//div[@class='profile__data']//p/strong[text()='Editorial:']"));
             String editorial = editElem.getText().trim();
-            info.put("Editorial", editorial);
+            info.put("editorial", editorial);
 
-            WebElement fechaElem = driver.findElement(By.xpath("//div[@class='profile__data']//p/strong[text()='Editorial:']"));
+            WebElement fechaElem = driver.findElement(By.xpath("//div[@class='profile__data']//p/strong[text()='Año publicación:']"));
             String fecha_publicacion = fechaElem.getText().trim();
-            info.put("Fecha publicación", fecha_publicacion);
+            info.put("fecha_publicacion", fecha_publicacion);
 
             WebElement resumElem = driver.findElement(By.xpath("//strong[contains(@href, '')][1]"));
             String resumen = resumElem.getText().trim();
-            info.put("Resumen", resumen);
+            info.put("resumen", resumen);
 
-            WebElement resumTxtElem = driver.findElement(By.xpath("//strong[contains(@href, '')][1]"));
-            String resumen_texto = resumTxtElem.getText().trim();
-            info.put("Resumen texto", resumen_texto);
+            List<WebElement> resumTxtElems = driver.findElements(By.cssSelector("div.profile__text p"));
+            String alltxt = resumTxtElems.stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.joining("\n"));
+            info.put("resumen_texto", alltxt);
 
             //ahora utilizaremos el elemento Tema para clasificarlo como un Map de libros y representar el diagrama
 

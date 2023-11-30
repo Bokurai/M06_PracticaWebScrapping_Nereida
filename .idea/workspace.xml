@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a06c2b26-71b6-408b-986b-8fa6dfb7524f" name="Changes" comment="definir clases finales">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Libro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Libro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +104,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701228645359</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="definir clases finales">
+      <option name="closed" value="true" />
+      <created>1701284916247</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1701284916247</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
