@@ -1,16 +1,20 @@
 package practica_scrapping_nereida;
 
 //importamos las clases necesarias
-import org.openqa.selenium.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -26,6 +30,8 @@ public class Main {
         //redirigimos la carga de la operación principal a GeckoDriver
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
         FirefoxOptions options = new FirefoxOptions();
+        options.addPreference("dom.webnotifications.serviceworker.enabled", false);
+        options.addPreference("dom.webnotifications.enabled", false);
         driver = new FirefoxDriver(options);
 
         //navegamos hasta la página web en concreto
@@ -42,8 +48,11 @@ public class Main {
 
         //EXTRACCIÓN DE ENLACES Y DATOS
 
-        //para poder guardar todos los libros, hacemos un Map con List
-        List<Map<String, Map<String, String>>> listaDefinitiva = new ArrayList<>();
+        //primero creamos la instancia de Categoría
+        Categoria catLiteratura = new Categoria("Literatura");
+
+        //luego para evitar repeticiones de instancias de la clase Tema, creamos un set para cada categoría, ya que hay Temas exclusivos de cada uno
+        Set<Tema> conjuntoTemasLiteratura = new HashSet<>();
 
         //1.Categoría: Literatura
         WebElement literatura = driver.findElement(By.linkText("Literatura"));
@@ -66,40 +75,27 @@ public class Main {
         //tras invocar el método, por conveniencia convertiremos litEnlaces a un array simple
         String[] literaturaEnlacesArray = litEnlaces.toArray(new String[0]);
 
-        //para extraer la información de los libros y añadirla al Map
-        List<Map<String, Map<String, String>>> librosLiteratura = extraerInfo(literaturaEnlacesArray, "Literatura");
-        listaDefinitiva.addAll(librosLiteratura);
+        //invocamos los métodos para extraer los libros
+        procesarEnlaces(conjuntoTemasLiteratura, literaturaEnlacesArray, catLiteratura);
 
         //vovler a la página anterior
         driver.navigate().back();
 
-        //2.Categoría: Ensayo
-        //para este seguiremos los mismos pasos que la categoría anterior, cambiando un par de nombres de variables en el proceso
-        WebElement ensayo = driver.findElement(By.linkText("Ensayo"));
-        ensayo.click();
 
-        //extraeremos los libros de la segunda página
-        saltarpaginaencategoria();
+        // Imprimir libros de la categoría Literatura
+        System.out.println("Categoría: " + catLiteratura.getNombre_categoria());
+        for (Tema tema : catLiteratura.getTemas()) {
+            System.out.println("  Tema: " + tema.getNombre_tema());
+            for (Libro libro : tema.getLibros()) {
+                System.out.println("    Libro: " + libro.getTitulo());
+                System.out.println("      Autor: " + libro.getAutor());
+                System.out.println("      Editorial: " + libro.getEditorial());
+                System.out.println("      Fecha de publicación: " + libro.getFecha_publicacion());
+                System.out.println("      Resumen: " + libro.getResumen());
+                System.out.println("      Texto del resumen: " + libro.getResumen_texto());
+            }
+        }
 
-        //creamos un arraylist para guardar los enlaces a partir de linksEnsayo
-        List<String> ensEnlaces = new ArrayList<>();
-
-        //para volver a encontrar el divLibros una vez pase a la siguiente categoría
-        divLibros = driver.findElement(By.className("datalist"));
-
-        //buscamos el div correspondiente a la lista de libros y los propios elementos li del la lista desordenada
-        List<WebElement>linksEnsayo = divLibros.findElements(By.tagName("li"));
-
-        //como queremos extraer sólo 50 enlaces de la propia página, creamos un bucle en un método aparte y esclarecemos los parámetros para este caso
-        int maxEnlacesEns = Math.min(50, linksEnsayo.size());
-        extraerLinks(maxEnlacesEns, linksEnsayo, ensEnlaces);
-
-        //tras invocar el método, por conveniencia convertiremos ensEnlaces a un array simple
-        String[] ensayoEnlacesArray = ensEnlaces.toArray(new String[0]);
-
-       //para extraer la información de los libros y añadirla al Map
-        List<Map<String, Map<String, String>>> librosEnsayo = extraerInfo(ensayoEnlacesArray, "Ensayo");
-        listaDefinitiva.addAll(librosEnsayo);
 
     }
 
@@ -142,71 +138,78 @@ public class Main {
         }
     }
 
+    //método para procesar los enlaces en un bucle
+    private static void procesarEnlaces(Set<Tema> conjuntoTemas, String[] enlacesArray, Categoria categoria) {
+        for (String enlace : enlacesArray) {
+            extraerInfo(enlace, conjuntoTemas, categoria);
+        }
+    }
+
     //método para extraer la info
-    public static List<Map<String, Map<String, String>>>extraerInfo(String[] enlaces, String categoria) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        //definimos el Map
-        List<Map<String, Map<String, String>>> categoLibros = new ArrayList<>();
-        //primero con un bucle navegamos a la página que contiene el enlace y extraemos la información
-        for (String enlace: enlaces){
+    private static void extraerInfo(String enlaceLibro, Set<Tema> conjuntoTemas,  Categoria categoria) {
+        driver.get(enlaceLibro);
 
-            //en este caso he decidido usar JavaScript para que cuando acabe un libro de extraer la info, vuelva atrás y cargue el siguiente en la misma pestaña
-            ((JavascriptExecutor) driver).executeScript("window.open(arguments[0],'_self');", enlace);
 
-            //ahora a extraer la información
-            //creamos un Hashmap dentro del otro map
-            Map<String,String> info = new HashMap<>();
+        // Extraer información del libro
+        Libro libro = new Libro();
+
+        try {
+            //para incluir el tema en su Set
+            WebElement temaElem = driver.findElement(By.xpath("//div[@class='profile__data']//p[strong='Temas:']"));
+            WebElement temaElemTexto = temaElem.findElement(By.tagName("a"));
+            String temaNombre = temaElemTexto.getText().trim();
+
+            Tema tema = new Tema(temaNombre,categoria);
+
+            //comprobamos que el tema exista en el Set
+            if (!conjuntoTemas.contains(tema)) {
+                conjuntoTemas.add(tema);
+            }
+
+            // Añadir libro al tema
+            tema.addLibro(libro);
 
             WebElement tituloElem = driver.findElement(By.cssSelector("h1.title"));
-            String titulo = tituloElem.getText().trim();
-            info.put("titulo", titulo);
+            libro.setTitulo(tituloElem.getText().trim());
 
-            WebElement autorElem = driver.findElement(By.cssSelector("div.web-middle__highlight.profile__header p strong:contains('Año publicación:') + a"));
-            String autor = autorElem.getText().trim();
-            info.put("autor", autor);
+            WebElement autorElem = driver.findElement(By.xpath("//div[@class='web-middle__highlight profile__header']/strong/a"));
+            libro.setAutor(autorElem.getText().trim());
 
             WebElement editElem = driver.findElement(By.xpath("//div[@class='profile__data']//p/strong[text()='Editorial:']"));
-            String editorial = editElem.getText().trim();
-            info.put("editorial", editorial);
+            libro.setEditorial(editElem.getText().trim());
 
             WebElement fechaElem = driver.findElement(By.xpath("//div[@class='profile__data']//p/strong[text()='Año publicación:']"));
-            String fecha_publicacion = fechaElem.getText().trim();
-            info.put("fecha_publicacion", fecha_publicacion);
+            libro.setFecha_publicacion(fechaElem.getText().trim());
 
-            WebElement resumElem = driver.findElement(By.xpath("//strong[contains(@href, '')][1]"));
-            String resumen = resumElem.getText().trim();
-            info.put("resumen", resumen);
+            WebElement resumElem = driver.findElement(By.cssSelector("div.profile__text h2#ProfileBiography"));
+            libro.setResumen(resumElem.getText().trim());
 
             List<WebElement> resumTxtElems = driver.findElements(By.cssSelector("div.profile__text p"));
             String alltxt = resumTxtElems.stream()
                     .map(WebElement::getText)
                     .collect(Collectors.joining("\n"));
-            info.put("resumen_texto", alltxt);
+            libro.setResumen_texto(alltxt);
 
-            //ahora utilizaremos el elemento Tema para clasificarlo como un Map de libros y representar el diagrama
+        } catch (NoSuchElementException e) {
+            //en caso de no haber información, utilizaremos estos setters para el objeto
+            e.printStackTrace();
+            libro.setTitulo("Título no disponible");
+            libro.setAutor("Autor no disponible");
+            libro.setEditorial("Editorial no disponible");
+            libro.setFecha_publicacion("Fecha de publicación no disponible");
+            libro.setResumen("Resumen no disponible");
+            libro.setResumen_texto("Texto del resumen no disponible");
+        }finally {
+            // Volver a la página anterior
+            driver.navigate().back();
 
-            WebElement temaElem = driver.findElement(By.xpath("//*[@id=\"ext_web\"]/main/div[2]/div/div[1]/ul/li[3]/p/a"));
-            String tema = temaElem.getText().trim();
-
-            Map<String, String> temaMap = new HashMap<>();
-            temaMap.put("Tema", tema);
-            temaMap.put("Categoría", categoria);
-
-
-            Map<String, String> libroMap = new HashMap<>(info);
-
-
-            Map<String, Map<String, String>> categoriaTemaLibroMap = new HashMap<>();
-            categoriaTemaLibroMap.put("Libro", libroMap);
-            categoriaTemaLibroMap.put("Tema y Categoría", temaMap);
-
-            categoLibros.add(categoriaTemaLibroMap);
-
-
-            driver.close();
-            driver.switchTo().window(driver.getWindowHandles().iterator().next());
+            // Actualizar la lista de temas en la categoría
+            categoria.setTemas(conjuntoTemas);
         }
 
-            return categoLibros;
     }
+
+
+
 }
+

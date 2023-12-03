@@ -11,6 +11,9 @@ public class Libro {
     private String resumen_texto;
     private Tema tema;
 
+    public Libro() {
+    }
+
     public Libro(String titulo, String autor, String editorial, String fecha_publicacion, String resumen,String resumen_texto, Tema tema) {
         this.titulo = titulo;
         this.autor = autor;
