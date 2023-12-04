@@ -11,10 +11,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.File;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -30,8 +28,6 @@ public class Main {
         //redirigimos la carga de la operación principal a GeckoDriver
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
         FirefoxOptions options = new FirefoxOptions();
-        options.addPreference("dom.webnotifications.serviceworker.enabled", false);
-        options.addPreference("dom.webnotifications.enabled", false);
         driver = new FirefoxDriver(options);
 
         //navegamos hasta la página web en concreto
@@ -69,47 +65,23 @@ public class Main {
         List<WebElement>linksLiteratura = divLibros.findElements(By.tagName("li"));
 
         //como queremos extraer sólo 50 enlaces de la propia página, creamos un bucle en un método aparte y esclarecemos los parámetros para este caso
-        int maxEnlacesLit = Math.min(50,linksLiteratura.size());
+        int maxEnlacesLit = Math.min(2,linksLiteratura.size());
         extraerLinks(maxEnlacesLit, linksLiteratura, litEnlaces);
 
         //tras invocar el método, por conveniencia convertiremos litEnlaces a un array simple
         String[] literaturaEnlacesArray = litEnlaces.toArray(new String[0]);
 
-        //invocamos los métodos para extraer los libros
+        //invocamos el método para extraer los elementos de los enlaces
         procesarEnlaces(conjuntoTemasLiteratura, literaturaEnlacesArray, catLiteratura);
 
-        //vovler a la página anterior
+        //una vez acabe el proceso, vuelve a la página de Literatura
         driver.navigate().back();
 
-
-        // Imprimir libros de la categoría Literatura
-        System.out.println("Categoría: " + catLiteratura.getNombre_categoria());
-        for (Tema tema : catLiteratura.getTemas()) {
-            System.out.println("  Tema: " + tema.getNombre_tema());
-            for (Libro libro : tema.getLibros()) {
-                System.out.println("    Libro: " + libro.getTitulo());
-                System.out.println("      Autor: " + libro.getAutor());
-                System.out.println("      Editorial: " + libro.getEditorial());
-                System.out.println("      Fecha de publicación: " + libro.getFecha_publicacion());
-                System.out.println("      Resumen: " + libro.getResumen());
-                System.out.println("      Texto del resumen: " + libro.getResumen_texto());
-            }
-        }
-
-
+        //para crear los CSV
+        File temas_y_libros = CSVCreator.CSV_temas_y_libros(new ArrayList<>(conjuntoTemasLiteratura), "temas_y_libros.csv");
+        File temas_y_categoria = CSVCreator.CSV_temas_y_categoria(catLiteratura, "temas_y_categoria.csv");
     }
 
-    //método para poder saltar los anuncios cada vez que hagamos cambio de página
-    public static void saltaranuncios() {
-        WebElement anuncios = driver.findElement(By.id("ad_position_box"));
-        try {
-            if (anuncios.isDisplayed()) {
-                driver.findElement(By.id("dismiss-button")).click();
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
-    }
 
     //método para poder ir a otras páginas en la misma categoría
     public static void saltarpaginaencategoria(){
@@ -146,9 +118,9 @@ public class Main {
     }
 
     //método para extraer la info
-    private static void extraerInfo(String enlaceLibro, Set<Tema> conjuntoTemas,  Categoria categoria) {
+    private static void extraerInfo(String enlaceLibro, Set<Tema> conjuntoTemas, Categoria categoria) {
         driver.get(enlaceLibro);
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Extraer información del libro
         Libro libro = new Libro();
@@ -159,55 +131,66 @@ public class Main {
             WebElement temaElemTexto = temaElem.findElement(By.tagName("a"));
             String temaNombre = temaElemTexto.getText().trim();
 
-            Tema tema = new Tema(temaNombre,categoria);
+            Tema tema = new Tema(temaNombre, categoria);
 
             //comprobamos que el tema exista en el Set
             if (!conjuntoTemas.contains(tema)) {
                 conjuntoTemas.add(tema);
             }
 
-            // Añadir libro al tema
+            // ahora, establecemos la integración entre los objetos
             tema.addLibro(libro);
 
-            WebElement tituloElem = driver.findElement(By.cssSelector("h1.title"));
-            libro.setTitulo(tituloElem.getText().trim());
+            categoria.addTema(tema);
 
-            WebElement autorElem = driver.findElement(By.xpath("//div[@class='web-middle__highlight profile__header']/strong/a"));
-            libro.setAutor(autorElem.getText().trim());
+            libro.addTemas(conjuntoTemas);
 
-            WebElement editElem = driver.findElement(By.xpath("//div[@class='profile__data']//p/strong[text()='Editorial:']"));
-            libro.setEditorial(editElem.getText().trim());
+            // Manejo individual para cada campo
+            try {
+                WebElement tituloElem = driver.findElement(By.cssSelector("h1.title"));
+                libro.setTitulo(tituloElem.getText().trim());
+            } catch (NoSuchElementException e) {
+                System.out.println("Elemento 'Título' no encontrado: " + e.getMessage());
+                libro.setTitulo("Título no disponible");
+            }
 
-            WebElement fechaElem = driver.findElement(By.xpath("//div[@class='profile__data']//p/strong[text()='Año publicación:']"));
-            libro.setFecha_publicacion(fechaElem.getText().trim());
+            try {
+                List<WebElement> autorElems = driver.findElements(By.xpath("//div[@class='web-middle__highlight profile__header']/strong/a"));
+                List<String> autores = autorElems.stream().map(WebElement::getText).collect(Collectors.toList());
+                libro.setAutores(autores);
+            } catch (NoSuchElementException e) {
+                System.out.println("Elemento 'Autor' no encontrado: " + e.getMessage());
+                libro.setAutores(Collections.singletonList("Autor no disponible"));
+            }
 
-            WebElement resumElem = driver.findElement(By.cssSelector("div.profile__text h2#ProfileBiography"));
-            libro.setResumen(resumElem.getText().trim());
+            try {
+                WebElement resumElem = driver.findElement(By.cssSelector("div.profile__text h2#ProfileBiography"));
+                libro.setResumen(resumElem.getText().trim());
+            } catch (NoSuchElementException e) {
+                System.out.println("Elemento 'Resumen' no encontrado: " + e.getMessage());
+                libro.setResumen("Resumen no disponible");
+            }
 
-            List<WebElement> resumTxtElems = driver.findElements(By.cssSelector("div.profile__text p"));
-            String alltxt = resumTxtElems.stream()
-                    .map(WebElement::getText)
-                    .collect(Collectors.joining("\n"));
-            libro.setResumen_texto(alltxt);
+            try {
+                List<WebElement> resumTxtElems = driver.findElements(By.cssSelector("div.profile__text p"));
+                String alltxt = resumTxtElems.stream()
+                        .map(WebElement::getText)
+                        .collect(Collectors.joining("\n"));
+                libro.setResumen_texto(alltxt);
+            } catch (NoSuchElementException e) {
+                System.out.println("Elemento 'Texto del resumen' no encontrado: " + e.getMessage());
+                libro.setResumen_texto("Texto del resumen no disponible");
+            }
 
         } catch (NoSuchElementException e) {
-            //en caso de no haber información, utilizaremos estos setters para el objeto
-            e.printStackTrace();
-            libro.setTitulo("Título no disponible");
-            libro.setAutor("Autor no disponible");
-            libro.setEditorial("Editorial no disponible");
-            libro.setFecha_publicacion("Fecha de publicación no disponible");
-            libro.setResumen("Resumen no disponible");
-            libro.setResumen_texto("Texto del resumen no disponible");
-        }finally {
-            // Volver a la página anterior
-            driver.navigate().back();
-
+            // En caso de no haber información para el tema
+            System.out.println("Elemento 'Temas' no encontrado: " + e.getMessage());
+        } finally {
             // Actualizar la lista de temas en la categoría
             categoria.setTemas(conjuntoTemas);
         }
-
     }
+
 
 
 

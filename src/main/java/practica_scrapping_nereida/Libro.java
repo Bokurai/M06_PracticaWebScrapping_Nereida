@@ -1,27 +1,30 @@
 package practica_scrapping_nereida;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Libro {
 
-    private String titulo;
-    private String autor;
 
-    private String editorial;
-    private String fecha_publicacion;
+    private String titulo;
+    private List<String> autores;
     private String resumen;
     private String resumen_texto;
-    private Tema tema;
+    private Set<Tema> temas;
 
     public Libro() {
+        this.autores = new ArrayList<>();
+        this.temas = new HashSet<>();
     }
 
-    public Libro(String titulo, String autor, String editorial, String fecha_publicacion, String resumen,String resumen_texto, Tema tema) {
+    public Libro(String titulo, List<String> autores, String resumen, String resumen_texto, Set<Tema> temas) {
         this.titulo = titulo;
-        this.autor = autor;
-        this.editorial = editorial;
-        this.fecha_publicacion = fecha_publicacion;
+        this.autores = autores;
         this.resumen = resumen;
-        this.tema = tema;
         this.resumen_texto = resumen_texto;
+        this.temas = temas;
     }
 
     public String getTitulo() {
@@ -32,28 +35,12 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
-        return autor;
+    public List<String> getAutores() {
+        return autores;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getEditorial() {
-        return editorial;
-    }
-
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-
-    public String getFecha_publicacion() {
-        return fecha_publicacion;
-    }
-
-    public void setFecha_publicacion(String fecha_publicacion) {
-        this.fecha_publicacion = fecha_publicacion;
+    public void setAutores(List<String> autores) {
+        this.autores = autores;
     }
 
     public String getResumen() {
@@ -72,11 +59,22 @@ public class Libro {
         this.resumen_texto = resumen_texto;
     }
 
-    public Tema getTema() {
-        return tema;
+    public Set<Tema> getTemas() {
+        return temas;
     }
 
-    public void setTema(Tema tema) {
-        this.tema = tema;
+    public void addTemas(Set<Tema> temas) {
+        this.temas.addAll(temas);
+    }
+
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "titulo='" + titulo + '\'' +
+                ", autores=" + autores +
+                ", resumen='" + resumen + '\'' +
+                ", resumen_texto='" + resumen_texto + '\'' +
+                ", temas=" + temas +
+                '}';
     }
 }
