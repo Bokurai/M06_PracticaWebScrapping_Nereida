@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<lecturalia>
+    <Literatura>
+        <tema>Cómics</tema>
+        <tema>Narrativa</tema>
+        <libro>
+            <título>13 Rue del Percebe. Edición Integral</título>
+            <autores>
+                <autor>Francisco Ibáñez</autor>
+            </autores>
+            <resumen>Resumen y sinopsis de 13 Rue del Percebe. Edición Integral de Francisco Ibáñez</resumen>
+            <resumen_texto>Por primera vez se reúnen en un solo volumen todaslas páginas que realizó Francisco Ibáñez de su míticaserie 13, Rue del Percebe.Desde su primera aparición en 1961, en la revista TíoVivo, la serie tuvo el aplauso unánime del público, quesemana a semana podía disfrutar de las divertidas situacionesque el autor planteaba en cada uno de lospisos de aquel edificio situado en el número 13 de laRue del Percebe.Personajes inolvidables de nuestra historieta, como laportera, el tendero, el moroso de la azotea o la dueñade la pensión, surgidos de la fecunda imaginación deIbáñez, hicieron de esta serie una de las más celebradasdel cómic de todas las épocas.</resumen_texto>
+            <tema_libro>Cómics</tema_libro>
+            <tema_libro>Narrativa</tema_libro>
+        </libro>
+        <libro>
+            <título>13 perros y medio</título>
+            <autores>
+                <autor>Fernando Lalana</autor>
+            </autores>
+            <resumen>Resumen y sinopsis de 13 perros y medio de Fernando Lalana</resumen>
+            <resumen_texto>Frías navidades en la ciudad de Félix Manley. Casi todos los amigos de la pandilla se han marchado de vacaciones fuera de la ciudad. Sin embargo, la inexplicable desaparición de la novia rusa de Luisfer dará pie a una nueva aventura, llena de personajes insólitos, con el telón de fondo del festival de cine soviético que se proyecta en el Kirov, antiguo cine Rialto.
+La esperada secuela de 13 PERROS. Vuelve Félix Manley, el hijo de Elvira Ballesteros, maestra reconvertida en detectiva privada, y de Felipe Manley, agente de los servicios secretos españoles. Una sátira de las novelas de espías, más divertida y con más acción que su predecesora. ¡Llena de rusos!
+</resumen_texto>
+            <tema_libro>Narrativa</tema_libro>
+        </libro>
+    </Literatura>
+</lecturalia>
