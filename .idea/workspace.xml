@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a06c2b26-71b6-408b-986b-8fa6dfb7524f" name="Changes" comment="definir clases finales">
-      <change afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/CSVCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temas_y_libros.csv" afterDir="false" />
+    <list default="true" id="a06c2b26-71b6-408b-986b-8fa6dfb7524f" name="Changes" comment="acabada parte CSV">
+      <change afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/XMLCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/ConvertirCSV_XML.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Categoria.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Libro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Libro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Tema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Tema.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +140,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701642120291</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="acabada parte CSV">
+      <option name="closed" value="true" />
+      <created>1701703943196</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1701703943196</updated>
+    </task>
+    <task id="LOCAL-00012" summary="acabada parte CSV">
+      <option name="closed" value="true" />
+      <created>1701703957348</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1701703957348</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,14 +176,15 @@
     <MESSAGE value="modificando algunas cosas" />
     <MESSAGE value="extraer links listo" />
     <MESSAGE value="definir clases finales" />
-    <option name="LAST_COMMIT_MESSAGE" value="definir clases finales" />
+    <MESSAGE value="acabada parte CSV" />
+    <option name="LAST_COMMIT_MESSAGE" value="acabada parte CSV" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Categoria.java</url>
-          <line>39</line>
+          <line>43</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

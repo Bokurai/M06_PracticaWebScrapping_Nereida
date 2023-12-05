@@ -1,9 +1,11 @@
 package practica_scrapping_nereida;
 
+import javax.xml.bind.annotation.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@XmlRootElement(name = "lecturalia")
 public class Categoria {
 
     private String nombre_categoria;
@@ -15,6 +17,7 @@ public class Categoria {
         this.conjuntoTemas = new HashSet<>();
     }
 
+    @XmlElement
     public String getNombre_categoria() {
         return nombre_categoria;
     }
@@ -23,6 +26,7 @@ public class Categoria {
         this.nombre_categoria = nombre_categoria;
     }
 
+    @XmlElement(name = "literatura")
     public Set<Tema> getTemas() {
         return conjuntoTemas;
     }

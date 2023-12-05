@@ -1,9 +1,12 @@
 package practica_scrapping_nereida;
 import java.util.Objects;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement
+@XmlType(propOrder = {"nombre_tema", "libros"})
 public class Tema {
     private String nombre_tema;
     private Categoria categoria;
@@ -15,6 +18,7 @@ public class Tema {
         this.libros = new ArrayList<>();
     }
 
+    @XmlElement
     public String getNombre_tema() {
         return nombre_tema;
     }
@@ -31,6 +35,7 @@ public class Tema {
         this.categoria = categoria;
     }
 
+    @XmlElement
     public List<Libro> getLibros() {
         return libros;
     }

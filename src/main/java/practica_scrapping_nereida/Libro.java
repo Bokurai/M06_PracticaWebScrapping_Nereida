@@ -1,12 +1,15 @@
 package practica_scrapping_nereida;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Libro {
 
+@XmlRootElement
+@XmlType(propOrder = {"titulo", "autores", "resumen", "resumen_texto"})
+public class Libro {
 
     private String titulo;
     private List<String> autores;
@@ -27,6 +30,7 @@ public class Libro {
         this.temas = temas;
     }
 
+    @XmlElement
     public String getTitulo() {
         return titulo;
     }
@@ -35,6 +39,7 @@ public class Libro {
         this.titulo = titulo;
     }
 
+    @XmlElement
     public List<String> getAutores() {
         return autores;
     }
@@ -43,6 +48,7 @@ public class Libro {
         this.autores = autores;
     }
 
+    @XmlElement
     public String getResumen() {
         return resumen;
     }
@@ -51,6 +57,7 @@ public class Libro {
         this.resumen = resumen;
     }
 
+    @XmlElement
     public String getResumen_texto() {
         return resumen_texto;
     }
@@ -67,14 +74,4 @@ public class Libro {
         this.temas.addAll(temas);
     }
 
-    @Override
-    public String toString() {
-        return "Libro{" +
-                "titulo='" + titulo + '\'' +
-                ", autores=" + autores +
-                ", resumen='" + resumen + '\'' +
-                ", resumen_texto='" + resumen_texto + '\'' +
-                ", temas=" + temas +
-                '}';
-    }
 }
