@@ -16,6 +16,13 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.TransformerException;
+import org.w3c.dom.*;
+
 public class Main {
     private static WebDriver driver;
 
@@ -80,6 +87,12 @@ public class Main {
         //para crear los CSV
         File temas_y_libros = CSVCreator.CSV_temas_y_libros(new ArrayList<>(conjuntoTemasLiteratura), "temas_y_libros.csv");
         File temas_y_categoria = CSVCreator.CSV_temas_y_categoria(catLiteratura, "temas_y_categoria.csv");
+
+        //para crear el XML
+        Document doc = XMLCreator.convertir_categoria_XML(catLiteratura);
+
+        //guardar el XML
+        guardarXML(doc, "libros.xml");
     }
 
 
@@ -191,7 +204,22 @@ public class Main {
         }
     }
 
+//he elegido poner aquí el método para guardar el XML ya que resulta más sencillo
+private static void guardarXML(Document doc, String ruta_archivo) {
+    try {
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(doc);
 
+        StreamResult result = new StreamResult(new File(ruta_archivo));
+
+        transformer.transform(source, result);
+
+        System.out.println("se ha guardado el documento");
+    } catch (TransformerException e) {
+        e.printStackTrace();
+    }
+}
 
 
 }

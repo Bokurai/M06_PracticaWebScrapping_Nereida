@@ -5,7 +5,13 @@ import org.w3c.dom.*;
 import org.w3c.dom.Element;
 import javax.xml.bind.*;
 import javax.xml.parsers.*;
+import java.io.File;
 import java.util.*;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.*;
 public class XMLCreator {
 public static Document  convertir_categoria_XML (Categoria categoria) {
@@ -73,12 +79,12 @@ public static Document  convertir_categoria_XML (Categoria categoria) {
            }
            categoriaElement.appendChild(libroElement);
 
-       }
-       return doc;
-   }catch (ParserConfigurationException e) {
-       e.printStackTrace();
+             }
+            return doc;
+            }catch (ParserConfigurationException e) {
+               e.printStackTrace();
        return null;
-   }
+         }
 
-}
+    }
 }
