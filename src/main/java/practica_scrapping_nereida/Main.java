@@ -76,7 +76,7 @@ public class Main {
         List<WebElement>linksLiteratura = divLibros.findElements(By.tagName("li"));
 
         //como queremos extraer sólo 50 enlaces de la propia página, creamos un bucle en un método aparte y esclarecemos los parámetros para este caso
-        int maxEnlacesLit = Math.min(2,linksLiteratura.size());
+        int maxEnlacesLit = Math.min(30,linksLiteratura.size());
         extraerLinks(maxEnlacesLit, linksLiteratura, litEnlaces);
 
         //tras invocar el método, por conveniencia convertiremos litEnlaces a un array simple
