@@ -24,6 +24,9 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.TransformerException;
 import org.w3c.dom.*;
 
+/**The Main class of the project
+ * @author bokurai
+ **/
 public class Main {
     private static WebDriver driver;
 
@@ -97,12 +100,18 @@ public class Main {
     }
 
 
+    /**This method orders the driver to go to the next page in a category
+     * @author bokurai
+     **/
     //método para poder ir a otras páginas en la misma categoría
     public static void saltarpaginaencategoria(){
         WebElement siguiente = driver.findElement(By.linkText("Siguiente"));
         siguiente.click();
     }
 
+    /**This method is to extract all the links containing the material that we want to scrap.
+     * @author bokurai
+     **/
     //método para extraer enlaces
     public static void extraerLinks(int maxEnlaces, List<WebElement> cosas,List<String> links) throws NoSuchElementException {
         WebDriverWait wait = new WebDriverWait(driver, 10);

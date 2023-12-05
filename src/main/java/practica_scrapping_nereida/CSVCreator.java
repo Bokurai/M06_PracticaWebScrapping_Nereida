@@ -6,8 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+/**This class is used to convert all the important objects into two CSVs: one for Tema-Categoria, and another for Tema-Libro
+ * @author bokurai
+ **/
 public class CSVCreator {
 
+    /**This method uses a parameter to reference the Tema HasshSet and a String as a placeholder for an output file.
+     * It's used to convert all the Tema and Libro objects to a CSV.
+     * @author bokurai
+     **/
     static public File CSV_temas_y_libros(List<Tema> temas, String nom_arxiu) {;
         File arxiu = new File(nom_arxiu);
         try {
@@ -34,6 +41,10 @@ public class CSVCreator {
         }
     }
 
+    /**This method uses a parameter to reference a Categoria instance and a String as a placeholder for an output file.
+     * It's used to convert all the Tema and Categoria objects to a CSV.
+     * @author bokurai
+     **/
     static public File CSV_temas_y_categoria(Categoria categoria, String nom_arxiu) {;
         File arxiu = new File(nom_arxiu);
         try {

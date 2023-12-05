@@ -5,8 +5,67 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a06c2b26-71b6-408b-986b-8fa6dfb7524f" name="Changes" comment="javadoc pending">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/allclasses-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/allpackages-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/copy.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/element-list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/help-doc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-10.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-11.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index-files/index-9.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/legal/ADDITIONAL_LICENSE_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/legal/ASSEMBLY_EXCEPTION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/legal/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/legal/jquery.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/legal/jqueryUI.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/member-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/module-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/overview-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/package-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/CSVCreator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/Categoria.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/Libro.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/Main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/Tema.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/XMLCreator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/class-use/CSVCreator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/class-use/Categoria.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/class-use/Libro.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/class-use/Main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/class-use/Tema.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/class-use/XMLCreator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/practica_scrapping_nereida/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/resources/glass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/resources/x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/script-dir/jquery-3.6.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/script-dir/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/script-dir/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/search-page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/tag-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadoc/type-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/CSVCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/CSVCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Categoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Libro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Libro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Tema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Tema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/XMLCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/XMLCreator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,13 +92,16 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2Wz9uRZ8aEpm4icZY6vyajz8sZp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
@@ -179,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701772782460</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="javadoc pending">
+      <option name="closed" value="true" />
+      <created>1701783190281</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701783190281</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -194,6 +264,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="ftry" />
     <MESSAGE value="primeros cambios para acceder a la sección de libros" />
     <MESSAGE value="modificando algunas cosas" />
@@ -209,7 +280,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/practica_scrapping_nereida/Categoria.java</url>
-          <line>43</line>
+          <line>73</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

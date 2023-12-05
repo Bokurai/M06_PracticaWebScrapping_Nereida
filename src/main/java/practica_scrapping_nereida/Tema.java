@@ -7,11 +7,19 @@ import java.util.List;
 
 @XmlRootElement
 @XmlType(propOrder = {"nombre_tema", "libros"})
+
 public class Tema {
     private String nombre_tema;
     private Categoria categoria;
+
+    /**An instance for the Libros List of objects
+     * @author bokurai
+     **/
     private List<Libro> libros;
 
+    /**Main constructor of the class.
+     * @author bokurai
+     **/
     public Tema(String nombre_tema, Categoria categoria) {
         this.nombre_tema = nombre_tema;
         this.categoria = categoria;
@@ -19,18 +27,30 @@ public class Tema {
     }
 
     @XmlElement
+    /**Getter method for nombre_tema.
+     * @author bokurai
+     **/
     public String getNombre_tema() {
         return nombre_tema;
     }
 
+    /**Setter method for nombre_tema.
+     * @author bokurai
+     **/
     public void setNombre_tema(String nombre_tema) {
         this.nombre_tema = nombre_tema;
     }
 
+    /**Getter method for Categoria class.
+     * @author bokurai
+     **/
     public Categoria getCategoria() {
         return categoria;
     }
 
+    /**Setter method for Categoria class.
+     * @author bokurai
+     **/
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }

@@ -3,17 +3,18 @@ package practica_scrapping_nereida;
 //incluimos los imports necesarios
 import org.w3c.dom.*;
 import org.w3c.dom.Element;
-import javax.xml.bind.*;
 import javax.xml.parsers.*;
-import java.io.File;
 import java.util.*;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.*;
+
+/**This class is used to convert all the important objects into an XML.
+ * @author bokurai
+ **/
 public class XMLCreator {
+
+    /**This method uses an instance of the Document class import and a Categoria class parameter.
+     * It's used to convert all the Categoria,Tema and Libro objects to an XML, representing the scrapped web structure to some level.
+     * If the execution is sucessfull, it will return the doc Object. Otherwise, it will print the Exception and return null
+     * @author bokurai */
 public static Document  convertir_categoria_XML (Categoria categoria) {
     //iniciamos las instancias de las librerías que necesitamos
    try {
